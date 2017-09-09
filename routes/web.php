@@ -29,6 +29,7 @@ Route::get('/quizzes/create','QuizController@create');
 Route::get('/quizzes/{quiz}/edit','QuizController@edit');
 Route::patch('/quizzes/{quiz}','QuizController@update');
 Route::get('/quizzes/{quiz}','QuizController@show');
+Route::delete('/quizzes/{quiz}','QuizController@destroy');
 
 
 Route::get('/quizzes/{quiz}/results','ResultController@index');

@@ -18,7 +18,11 @@
                                    class="btn btn-default btn-sm">Mange Questions</a>
                                 <a href="{{url('quizzes/'.$quiz->id.'/edit')}}"
                                    class="btn btn-primary btn-sm">Edit</a>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-danger btn-sm delete">Delete</button>
+                                <form action="{{ url('/quizzes/'.$quiz->id) }}" method="POST" style="display: none;">
+                                    {{method_field('DELETE')}}
+                                    {{csrf_field()}}
+                                </form>
                             </div>
                             <h3>
                                 {{$quiz->name}}
@@ -29,4 +33,22 @@
             </div>
         @endforeach
     </div>
+@endsection
+@section('script')
+    <script>
+        $('.delete').on('click',function(e){
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                icon: "warning",
+                buttons: {
+                    cancel: true,
+                    confirm: "Yes Delete this Quiz"
+                },
+                dangerMode: true,
+            }).then(() => {
+                $(this).siblings('form').submit();
+            });
+        })
+    </script>
 @endsection

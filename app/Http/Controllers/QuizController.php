@@ -52,6 +52,11 @@ class QuizController extends Controller
     }
 
 
+    public function destroy(Quiz $quiz)
+    {
+        $quiz->delete();
+        return back();
+    }
 
     public function validator(Request $request)
     {
