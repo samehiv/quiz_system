@@ -57,6 +57,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ url('/change_password') }}">Change Password</a>
+                                </li>
                                 @admin
                                     <li>
                                         <a href="{{ url('/admins/create') }}">Add Admin</a>

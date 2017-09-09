@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Rules\CurrrentPassword;
 
 class HomeController extends Controller
 {
@@ -63,6 +64,28 @@ class HomeController extends Controller
             'is_admin' => true
         ]);
         return redirect('/');
+    }
+
+
+    public function editPassword()
+    {
+        return view('change_password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $data = $request->validate([
+            'current_password' => [
+                'required',
+                new CurrrentPassword
+            ],
+            'password' => 'required|string|min:5|confirmed',
+        ]);
+        Auth::user()->update([
+            'password' => bcrypt($data['password'])
+        ]);
+        session()->flash('msg','Password Updated');
+        return back();
     }
 
 }

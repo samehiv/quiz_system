@@ -53,3 +53,5 @@ Route::get('/admins/create','HomeController@adminCreate');
 Route::post('/admins','HomeController@addAdmin');
 Route::delete('/account','HomeController@deleteAccount');
 Route::delete('/','HomeController@reset');
+Route::get('/change_password','HomeController@editPassword');
+Route::patch('/change_password','HomeController@updatePassword');
