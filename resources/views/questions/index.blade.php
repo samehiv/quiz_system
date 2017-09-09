@@ -4,11 +4,13 @@
         <div class="row">
             <div class="col-md-offset-2 col-md-8 margin-bottom">
                 <a href="{{url('/questions/create')}}" class="btn btn-primary">Create New Questions</a>
-                <button class="btn btn-danger" id="delete-all">Delete All</button>
-                <form action="{{ url('/questions') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                </form>
+                @if(count($questions->items)>0)
+                    <button class="btn btn-danger" id="delete-all">Delete All</button>
+                    <form action="{{ url('/questions') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                    </form>
+                @endif
             </div>
         </div>
         <questions  j-questions="{{json_encode($questions->items())}}"></questions>

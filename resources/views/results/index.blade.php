@@ -4,11 +4,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h4>{{$quiz->name}} Results</h4>
-                <button class="btn btn-danger margin-bottom" id="delete-all">Delete All</button>
-                <form action="{{ url('/quizzes/'.$quiz->id.'/results') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                </form>
+                @if(count($results->items()) > 0)
+                    <button class="btn btn-danger margin-bottom" id="delete-all">Delete All</button>
+                    <form action="{{ url('/quizzes/'.$quiz->id.'/results') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                    </form>
+                @endif
             </div>
         </div>
         @if(count($results->items()) > 0)
