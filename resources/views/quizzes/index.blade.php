@@ -32,6 +32,11 @@
                 </div>
             </div>
         @endforeach
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                {{ $quizzes->links() }}
+            </div>
+        </div>
     </div>
 @endsection
 @section('script')
